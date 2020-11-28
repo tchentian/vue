@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-if</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id = "app">
+  <!--v-show:当条件为false时，v-show只是给我们的元素增加了一个行内样式（display：none）-->
+   <h2 v-show="isShow" id='aaa'>
+     <div>i am </div>{{message}}
+   </h2>
+  <!--v-if：当条件为false时，包含v-if的指令元素更笨不会存在于DOM之中 -->
+   <h2 v-if = 'isShow' id='bbb'>
+     <div>i am </div>{{message}}
+   </h2>
+    <h1 v-else>isSHOW为false时，显示我</h1>
+  </div>
+  <!--不推荐，在标签里写着么复杂-->
+  <div id = 'app1'>
+  <h2 v-if = 'score>=90'>优秀</h2>
+  <h2 v-else-if = 'score>=60'>及格</h2>
+  <h2 v-else>不及格</h2>
+  </div>
+  <!--在js里进行操作-->
+  <div id = 'app2'>
+    <h2>{{message}}{{result}}</h2>
+  </div>
+
+  <!--用户账号和用户邮箱登陆方式的切换-->
+  <div id = 'app3'>
+    <span v-if="isUser">
+      <label for="username">用户账号</label>
+      <input type="text" id="username" placeholder="用户账号" key="username">
+    </span>
+    <!--为两个input标签加上相同的key值表示可以复用，不同时则在更换时会被清空-->
+    <span v-else>
+      <label for="username">用户邮箱</label>
+      <input type="text" id="email" placeholder="用户邮箱" key="email" >
+    </span>
+    <button @click="isUser = !isUser">切换登陆方式</button>
+  </div>
+</body>
+
+
+<script   >
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "chentiantian",
+      isShow: true
+    }
+  })
+
+  const app1 = new Vue({
+    el: '#app1',
+    data: {
+      score: 99
+    }
+  })
+
+  const app2 = new Vue({
+    el: '#app2',
+    data: {
+      score1: 90,
+      message: "your score is   "
+    },
+    computed: {
+      result() {
+        let showScore = ' ';
+        if(this.score1>=90) {
+          showScore = '优秀'
+        } else if(this.score1>=60) {
+          showScore = '及格'
+        }
+        //TODO:为什么不能用else
+        //  else (this.score1 < 60) {
+        //   showScore = "不及格"
+        // }
+        return showScore
+      }
+      }
+  })
+
+    const app3 = new Vue({
+      el: '#app3',
+      data: {
+        isUser: true
+      }
+    })
+</script>
+
+<style type="text/css">
+
+</style>
+</html>

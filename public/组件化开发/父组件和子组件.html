@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>父子组件</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "app">
+  <cpn2></cpn2>
+  <cpn001></cpn001>
+  <cpn002></cpn002>
+</div>
+
+
+</body>
+
+
+<script  type="module" >
+  //子组件
+  const cpnC1 =Vue.extend({
+    template:`
+    <div>
+      <h2>我是标题1</h2>
+      <p>我是内容1</p>
+    </div>
+    `
+  })
+  //父组件
+  const cpnC2 =Vue.extend({
+    template:`
+    <div>
+      <h2>我是标题2</h2>
+      <p>我是内容2</p>
+      <cpn1></cpn1>
+    </div>
+    `,
+    components: {
+      cpn1: cpnC1
+    }
+  })
+  //全局组件注册的语法糖
+  //1.创建组件构造器
+  // const cpn1 = Vue.extend()
+  //2.注册组件
+
+  //创建组件的语法糖
+  Vue.component('cpn001',{
+    template:`
+    <div>
+      <h2>我是标题001</h2>
+      <p>我是内容001</p>
+    </div>
+    `
+  })
+
+  const  app = new Vue({
+    el: '#app',
+    data: {
+      message: "chen"
+    },
+    components: {
+      cpn2: cpnC2,
+      'cpn002':{
+    template:`
+    <div>
+      <h2>我是标题002</h2>
+      <p>我是内容002</p>
+    </div>
+    `
+  }
+    }
+  })
+</script>
+
+<style type="text/css">
+
+</style>
+</html>

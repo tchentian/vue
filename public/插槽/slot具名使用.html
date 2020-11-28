@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>slot具名使用</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "app">
+  <cpn><span slot="center">换掉中间</span></cpn>
+</div>
+<template id="cpn">
+  <div>
+    <slot name="left"><span>左边</span></slot>
+    <slot name="center"><span>中间</span></slot>
+    <slot name="right"><span>右边</span></slot>
+    <slot><div>我没有名字</div></slot>
+  </div>
+</template>
+
+</body>
+
+
+<script  type="module" >
+  const app = new Vue({
+    el: '#app',
+    components: {
+      cpn: {
+        template: '#cpn'
+      }
+    }
+  })
+</script>
+
+<style type="text/css">
+
+</style>
+</html>

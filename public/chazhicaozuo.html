@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插值操作</title>
+    <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "mustache1" v-cloak>
+  <!--mustache语法中不仅仅可以直接写变量，也可以写简单的表达式-->
+  <!--在vue解析之前，div中有一个属性v-cloak，在vue解析之后，div中没有一个属性v-cloak-->
+  <h2>{{message}},chen!</h2>
+  <h2>{{firstname + lastname}}</h2>
+  <h2>{{firstname + ' ' + lastname}}</h2>
+  <h2>{{firstname }}{{ lastname}}</h2>
+  <h2>{{mul * 2}}</h2>
+
+  <h2 v-once>{{message}},chen!</h2><!--非响应式，只展示一次，不可更改-->
+
+  <h2>{{url}}</h2>
+  <h2 v-html="url"></h2>
+
+  <h2 v-text="message" >,chen!</h2> <!--会覆盖掉 标签之间的内容-->
+
+  <h2 v-pre>{{aaaaa}}</h2><!--不做解析-->
+
+
+</div>
+
+
+
+</body>
+
+
+<script  type="module" >
+  const mustache1 = new Vue({
+    el: "#mustache1",
+    data: {
+      message: 'hello',
+      firstname: 'chen',
+      lastname: 'tiantian',
+      mul: 100,
+      url: ' <a href="http://www.baidu.com">百度一下</a>'
+    }
+  })
+
+</script>
+
+<style type="text/css">
+  [v-cloak]{
+    display: none;
+  }
+</style>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初体验</title>
+    <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body id = 'bbb'>
+<div id = "tryi">
+    <div id = "message">{{message}}</div>
+
+    <ul>
+        <li v-for="item in movies">{{item}}</li>
+    </ul>
+
+</div>
+<div id = "counter">
+    <h2>当前数字：{{anumber}}</h2>
+    <button v-on:click="sub">-</button> <!-- v-on:click（@click） 用于监听某个元素的点击事件，执行的方法通常在methods中定义 -->
+    <button @click="add">+</button>
+
+</div>
+
+
+</body>
+
+<script>
+  let x =1
+    //let(变量)/const(常量）
+    const message = new Vue({
+       el: '#message' ,
+       data: {
+           message: 'hello,chentiantian!'
+       }
+    })
+    const movis = new Vue({
+        el: '#tryi' ,
+        data: {
+            movies: ['huoyin','tianguancifu','douluodalu']//响应式的 可以通过movis.movies.push（‘xx')在console中添加
+        }
+    })
+
+    console.log(movis.movies.push("new data"))
+
+
+    const bnumber ={
+        anumber:0
+    }
+    const counter = new Vue({
+        el: '#counter',
+        //data: {
+        //    anumber:0
+        // },
+        data:bnumber,
+        methods: {
+            sub: function (){
+                this.anumber--  //不要忘了用this.这个变量
+            },
+            add: function (){
+                this.anumber++
+            }
+
+        }
+    })
+
+</script>
+
+<style type="text/css">
+    #message{
+        color: #42b983;
+
+    }
+</style>
+</html>

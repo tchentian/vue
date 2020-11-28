@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "app">
+
+  <ul id = 'shuzu'>
+    <li v-for="(item,index) in peoples" :key="item">{{item}}    {{index}}</li>
+    <!-- key的绑定是为了在中间插入一个值时虚拟dom更高效，且key绑定的这个值要是固定的唯一性 就比如说在这里要用item而不是index -->
+    </ul>
+
+    <ul>
+      <li v-for="item in info">{{item}}</li>
+    </ul>
+    <ul>
+      <li v-for="(value,key) in info">{{value}}     {{key}}</li>
+    </ul>
+    <ul>
+      <li v-for="(value,key,index) in info">{{value}}    {{key}}     {{index}}</li>
+    </ul>
+  </div>
+
+
+  </body>
+
+
+  <script  type="module" >
+
+    const shuzu = new Vue({
+      el: '#shuzu',
+      data: {
+        peoples: ["liyi","zhaoer","chensi"]
+      }
+    })
+
+    const  app = new Vue({
+      el: '#app',
+      data: {
+        info: {
+          name: "chentiantian",
+          age: 18,
+          height: 165
+        }
+      }
+    })
+  </script>
+
+  <style type="text/css">
+
+  </style>
+  </html>

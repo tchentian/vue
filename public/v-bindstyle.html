@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-bind绑定style</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id = 'ss'>
+  <!-- <h2 :style="{key(css属性名):value(具体属性值)}">{{message}}</h2> -->
+  <h2 :style="{fontSize: finalSize+'px',color: finalColor}">{{message}}</h2>
+  <h2 :style="getStyle()">{{message}}</h2>
+</div>
+
+<div id = 'sary'>
+  <h2 :style="[baseStyle,baseStyle1]">{{message}}</h2>
+</div>
+
+</body>
+
+
+<script  >
+  const sob = new Vue({
+    el: "#ss",
+    data: {
+      message: "style语法对象",
+      finalSize: 30,
+      finalColor: 'red'
+    },
+    methods: {
+      getStyle: function (){
+        return {fontSize: this.finalSize+'px',color: this.finalColor}
+      }
+    }
+  })
+  const sar =new Vue({
+    el: "#sary",
+    data: {
+      message: "动态绑定style数组",
+      baseStyle: {backgroundColor: 'red'},
+      baseStyle1: {fontSize: '50px'}
+    }
+  })
+</script>
+
+<style type="text/css">
+
+</style>
+</html>

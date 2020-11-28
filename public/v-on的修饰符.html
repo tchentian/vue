@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-on的修饰符</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "app">
+  <!--  1.stop修饰符的使用-->
+  <!--  停止冒泡，（event.stopPropagation()）阻止除了点击的标签以外的父标签响应-->
+  <div @click="divClick">
+    aaaaaaaa
+    <button @click.stop="btnClick">按钮</button>
+  </div>
+  <br>
+
+  <!--  2.prevent修饰符的使用-->
+  <!--    阻止默认行为，（event.preventDefault()）-->
+  <form action="baidu">
+    <input type="submit" value="提交" @click.prevent="submitClick">
+  </form>
+
+  <!--  3.监听某个键盘的键帽-->
+  <input type="text" @keyup.enter="keyUp">
+
+  <!--  4.once修饰符的使用-->
+  <!--  只触发一次回调-->
+  <button @click.once="btn2Click">按钮2</button>
+</div>
+
+
+</body>
+
+
+<script  type="module" >
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "hello"
+    },
+    methods: {
+      btnClick() {
+        console.log("btnClick");
+      },
+      divClick() {
+        console.log("divClick");
+      },
+      submitClick() {
+        console.log("submitClick");
+      },
+      keyUp() {
+        console.log("keyUp");
+      },
+      btn2Click() {
+        console.log("btn2Click");
+      }
+    }
+  })
+</script>
+
+<style type="text/css">
+
+</style>
+</html>

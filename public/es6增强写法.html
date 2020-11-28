@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>es6增强写法</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "app">
+
+</div>
+
+
+</body>
+
+
+<script  type="module" >
+  //1.属性的简写
+  //es6之前
+  let name = 'chentt';
+  let age = 18;
+  let obj1 = {
+    name: name,
+    age:age
+  };
+  console.log(obj1);
+  //es6之后
+  let obj2 = {
+    name,
+    age
+  };
+  console.log(obj2);
+
+  //1.方法的简写
+  //es6之前
+  let obj1 = {
+    test: function (){
+      console.log('obj1的test函数')
+    }
+  };
+  obj1.test();
+  //es6之后
+  let obj2 = {
+    text() {
+      console.log('obj2的test函数')
+    }
+  };
+  obj2.text();
+</script>
+
+<style type="text/css">
+
+</style>
+</html>

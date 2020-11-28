@@ -6,11 +6,8 @@
     <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-<div id = "countbuter">
-    <div id="chat-region" ></div>
+<div id = "app">
 
-    <input v-bind:value="msg_text"  id="message-region" type="text" placeholder="type mesage you want to send"/>
-    <button v-on:click="onSend">发送 </button>
 </div>
 
 
@@ -18,30 +15,10 @@
 
 
 <script  type="module" >
-    let countbuter = new Vue({
-        el: '#countbuter',
-        data: {
-            msg_text:"type message you want to "
-        },
-        methods: {
-            onSend(value){
-                console.log(this.msg_text)
-            }
-        }
 
-    })
 </script>
 
 <style type="text/css">
-    #chat-region {
-        height:400px;
-        width:400px;
-        border:solid 3px blue;
-    }
-    #message-region {
-        height: 18px;
-        width:360px;
-        border: solid 3px green;
-    }
+
 </style>
-</html>
+</html>    

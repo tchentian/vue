@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "app">
+  <cpn01></cpn01>
+</div><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>全局和局部的组件化</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "app">
+  <!-- 3.使用组件（必须在vue的实例里使用）-->
+  <cpn1></cpn1>
+  <cpn1></cpn1>
+  <!--  <my-cpn>{{22}}</my-cpn>-->
+</div>
+<!--<my-cpn>{{22}}</my-cpn>-->
+<!--<cpn1></cpn1>-->
+
+</body>
+
+
+<script  type="module" >
+  //1.创建组件构造器
+  const  cpnC = Vue.extend({
+    template:`
+    <div>
+      <h2>我是标题</h2>
+      <p>我是内容1</p>
+      <p>我是内容2</p>
+    </div>`
+  })
+  // 2.注册组件(全局组件，意味着可以在多个Vue的实例下使用)
+  //  Vue.component("my-cpn",cpnC)
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "hhh"
+    },
+    components:{
+      //cpn1使用组件时的标签名，此时注册的是局部组件
+      cpn1 : cpnC
+    }
+  })
+</script>
+
+<style type="text/css">
+
+</style>
+</html>
+
+
+</body>
+
+
+<script  type="module" >
+  const cpn = Vue.extend({
+    template:`
+    <div>
+      <h2>我是标题</h2>
+      <p>我是内容</p>
+    </div>`
+  })
+  Vue.component("cpn01",cpn)
+</script>
+
+<style type="text/css">
+
+</style>
+</html>

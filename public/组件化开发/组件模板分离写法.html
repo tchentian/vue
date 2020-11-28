@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>组件模板分离写法</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "app">
+  <cpn00></cpn00>
+  <cpn1x></cpn1x>
+</div>
+<script type="text/x-template" id="cpn00">
+  <div>
+    <h2>我是标题</h2>
+    <p>我是内容</p>
+  </div>
+</script>
+
+<template id='cpn1x'>
+  <div>
+    <h2>我是标题2</h2>
+    <p>我是内容2</p>
+    <h2>{{message}}</h2>
+  </div>
+</template>
+
+</body>
+
+
+<script>
+  Vue.component('cpn00',{
+    template: '#cpn00'
+  })
+
+  Vue.component('cpn1x',{
+    template: '#cpn1x',
+    //组件的对象必须组是个函数是避免他的连锁反应
+    data() {
+      return {
+        message: "组件数据存放有自己的data"
+      }
+    }
+  })
+  const app = new Vue({
+    el: '#app',
+    date: {
+      message: "chen"
+    }
+  })
+</script>
+
+<style type="text/css">
+
+</style>
+</html>

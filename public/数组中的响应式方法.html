@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "app">
+  <ul>
+    <li v-for="item in letters">{{item}}</li>
+  </ul>
+  <button @click="btnClick">按钮</button>
+</div>
+
+
+</body>
+
+
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      letters: ["a","b","c","d","e","f"]
+    },
+    methods: {
+     btnClick() {
+       // 1.push方法，在数组的最后加字符串
+       // this.letters.push("aaa")
+       // this.letters.push("aaa","bbb","ccc")
+       // 2.pop()方法，删除数组中最后一个元素
+       //this.letters.pop()
+       // 3.shift()方法，删除数组中第一个元素
+       // this.letters.shift()
+       // 4.unshift()方法，在数组中最前面添加元素
+       // this.letters.unshift("aaa")
+       // this.letters.unshift("aaa","bbb","ccc")
+       // 5.splice()方法，可以删除元素、插入元素、替换元素
+       // 删除元素: splice(start,n)从第start的索引开始，删除n个
+       // 插入元素: splice(start,0,"x","y","z","n")从第start的索引开始,插入我们的x，y，z，n等字符串
+       // 替换元素: splice(start,n,"x","y","z","n")从第start的索引开始,用我们需要替换的x，y，z，n，去替换掉n位
+                 //当我们需要替换的是三个字符串，却传入了四个字符串时，是删除那三个，直接加四个
+       // splice()
+       // this.letters.splice(2,3,"x","y","z","n")
+       // 6.sort()方法，排序
+       // this.letters.sort()
+       // 7.reverse()方法，反转
+       // this.letters.reverse()
+       // 8.通过索引值修改数组中的元素，这个方法是非响应式，但是要是同时和响应式的方法一起绑定在一起也会看到效果
+       // this.letters[0] = "bbb";
+       //可用来替换的有如下方法
+       //this.letters.splice(0,1,"bbb")
+       //set(要修改的对象，索引值，修改后的值）
+       //Vue.set(this.letters,0,"bbb")
+     }
+    }
+  })
+</script>
+
+<style type="text/css">
+
+</style>
+</html>

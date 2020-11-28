@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>作用域插槽</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "app">
+  <cpn></cpn>
+  <br>
+  <cpn>
+   <!-- 获取子组件中的peoples-->
+    <template slot-scope="slot">
+      <span v-for="item in slot.data">{{item}}--</span>
+    </template>
+  </cpn>
+  <br>
+  <cpn>
+    <!-- 获取子组件中的peoples-->
+    <template slot-scope="slot">
+      <span>{{slot.data.join("----")}}</span>
+    </template>
+  </cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <slot :data="peoples">
+      <ul>
+        <li v-for="item in peoples">{{item}}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+</body>
+
+
+<script>
+ const app = new Vue({
+   el: '#app',
+   data: {
+     message: "hhhh"
+   },
+   components: {
+     cpn: {
+       template: '#cpn',
+       data() {
+         return {
+           peoples: ["王也","诸葛青","谢怜","花城","唐三"]
+         }
+       }
+     }
+   }
+ })
+</script>
+
+<style type="text/css">
+
+</style>
+</html>

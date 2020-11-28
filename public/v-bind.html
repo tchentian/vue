@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>v-bind的动态绑定</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "pp">
+  {{message}}
+<!--  TODU: 此处链接不跳转，图片不显示-->
+  <img v-bind:src="imgURL" alt="">
+  <h2 v-bind:href="translate">百度翻译</h2>
+  <h2 :href = "translate">百度翻译</h2>
+</div>
+
+<!--动态绑定class对象语法-->
+<div id = "ppob">
+  <h2 class= "title" v-bind:class= "{active:isActive , line:isLine}">{{message}}</h2>
+  <!-- 当给class绑定一个对象时{类名1：true，类名2：false}，只有当键值对的值为true时才会给class绑定键值对的键-->
+  <h2 class= "title" v-bind:class= "getClasses()">{{message}}</h2>
+
+  <button v-on:click="btnClick">按钮</button>
+</div>
+
+<!--动态绑定class数组语法-->
+<div id = 'parray'>
+  <h2 class = 'title' :class = "['active','line']" >{{message}}</h2> <!--数组中是写死的-->
+  <button v-on:click="btnClick1">按钮</button>
+
+  <h2 class = 'title' :class = "[active,line]" >{{message}}</h2>
+  <h2 class = 'title' :class = "getClasses" >{{message}}</h2>
+</div>
+
+<!--练习：点击列表中的哪一项，那么该项的文字变成红色-->
+<div id = 'cr'>
+  <ul>
+    <li v-for="(m,index) in movies"
+        :style="colorArr[index].baseStyle"
+        v-on:click="onChangeColor(index)">{{m}}</li>
+  </ul>
+</div>
+</body>
+
+
+<script >
+
+  const pic = new Vue({
+    el: '#pp',
+    data: {
+      message: 'hello,ctt',
+      translate: 'https://fanyi.baidu.com/?aldtype=16047#zh/en/%E7%BF%BB%E8%AF%91',
+      imgURL: 'https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=%E7%8E%8B%E4%B9%9F&step_word=&hs=2&pn=2&spn=0&di=42680&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=undefined&cs=4138678821%2C1759975946&os=457113977%2C1796675989&simid=3443775679%2C217141292&adpicid=0&lpn=0&ln=1399&fr=&fmq=1606121485565_R&fm=&ic=undefined&s=undefined&hd=undefined&latest=undefined&copyright=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201807%2F22%2F20180722091314_hxluo.jpeg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3B17tpwg2_z%26e3Bv54AzdH3Fks52AzdH3F%3Ft1%3Dl09blama0&gsm=1&rpstart=0&rpnum=0&islist=&querylist=&force=undefined'
+    }
+  })
+  const pcp = new Vue({
+    el: '#ppob',
+    data: {
+      message: '动态绑定class对象语法',
+      isActive: true,
+      isLine: true
+    },
+    methods: {
+      btnClick: function (){
+        this.isActive = !this.isActive
+      },
+      getClasses: function (){
+        return {active:this.isActive , line:this.isLine}//不要忘了this.
+      }
+    }
+  })
+  const pary = new Vue({
+    el: '#parray',
+    data: {
+      message: '动态绑定class数组语法',
+      active: 'xxx',
+      line: 'yyy'
+    },
+    methods: {
+      getClasses: function (){
+        return [this.active,this.line]
+      },
+      btnClick1: function (){
+        this.active = null
+      }
+    }
+  })
+  const cred = new Vue({
+    el: '#cr',
+    data: {
+      movies:['火影','海贼王','斗罗大陆','天官赐福'],
+      colorArr:[],
+    },
+    methods: {
+      resetColorArr(){
+        this.colorArr.splice(0,this.colorArr.length)
+        for(let i =0;i<this.movies.length;i++){
+          this.colorArr.push({baseStyle: {color: 'black'}})
+        }
+      },
+      onChangeColor(index){
+        this.resetColorArr();
+        this.colorArr[index].baseStyle.color = 'red';
+      }
+    },
+    created() {
+      this.resetColorArr();
+    }
+  })
+</script>
+
+<style type="text/css">
+  .active {
+    color: #42b983;
+  }
+</style>
+</html>

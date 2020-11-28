@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>子传父</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<!--父组件模板-->
+<div id ="app">
+  <cpn @item-click="cpnClick"></cpn>
+</div>
+<!--子组件模板-->
+<template id ="cpn">
+  <div>
+    <button v-for="item in categories"
+            @click="btnClick(item)">
+      {{item.name}}
+    </button>
+  </div>
+</template>
+
+</body>
+
+
+<script>
+  // 1.子组件
+  const  cpn = {
+    template: '#cpn',
+    data() {
+      return{
+        categories: [
+          {id: "aaa", name: "热门推荐"},
+          {id: "bbb", name: "手机数码"},
+          {id: "ccc", name: "电脑办公"},
+          {id: "ddd", name: "生活家居"}
+        ]
+      }
+    },
+    methods: {
+      btnClick(item) {
+        //发射事件
+        this.$emit('item-click',item)
+      }
+    }
+  }
+  // 2.父组件
+  const  app = new Vue({
+    el: '#app',
+    data: {
+
+      message: "aaaaaa"
+
+    },
+    components: {
+      cpn
+    },
+    methods: {
+      cpnClick(item) {
+        console.log('cpnClick',item)
+      }
+    }
+  })
+</script>
+
+<style type="text/css">
+
+</style>
+</html>

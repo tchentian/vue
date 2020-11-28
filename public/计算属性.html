@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>计算属性</title>
+  <script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id = "cpr">
+  <h2>{{firstName+ ' '+lastName}}</h2>
+  <h2>{{firstName}} {{lastName}}</h2>
+
+  <h2>{{getFullName()}}</h2>
+
+  <h2>{{fullName}}</h2>
+  
+</div>
+<div id = 'tolp'>
+  <h2>总价格:{{totalPrice}}</h2>
+</div>
+
+</body>
+
+
+<script  type="module" >
+  const cpr1 = new Vue({
+    el: '#cpr',
+    data: {
+      firstName: "chen",
+      lastName: "tiantian"
+    },
+    //computed:计算属性（）
+    computed: {
+      fullName: function () {
+        return this.firstName+ ' ' +this.lastName
+      }
+    },
+
+    methods: {
+      getFullName: function () {
+        return  this.firstName+ ' ' +this.lastName
+
+      }
+    }
+  })
+  const tol = new Vue({
+    el: '#tolp',
+    data: {
+      book: [
+        {id: 80,name:"Unix编程艺术",price:119},
+        {id: 81,name:"代码大全",price:105},
+        {id: 82,name:"深入理解计算机原理",price:98},
+        {id: 83,name:"现代操作系统",price:87}
+      ]
+      },
+    computed: {
+      totalPrice: function () {
+       let result = 0
+       for(let i=0;i<this.book.length;i++){
+         result += this.book[i].price
+       }
+       return result
+      }
+    }
+  })
+</script>
+
+<style type="text/css">
+
+</style>
+</html>
